@@ -19,7 +19,18 @@ export const Dashboard: React.FC = () => {
               if (existing) {
                 return existing;
               }
-              return condition;
+              /**
+               * Problem:
+               * `return condition;`
+               *
+               * We are returning the same object reference for different sources.
+               */
+
+              /**
+               * Solution:
+               * Using the spread operator to clone the object so we return a new object reference.
+               */
+              return { ...condition, passed: false };
             }),
           },
         };
